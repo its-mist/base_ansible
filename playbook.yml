@@ -1,6 +1,7 @@
 ---
 - name: Setup server
-  hosts: all
+  hosts: localhost
+  connection: local
   become: yes
   gather_facts: yes
 
