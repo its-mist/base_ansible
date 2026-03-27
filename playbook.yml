@@ -1,6 +1,6 @@
 ---
 - name: Setup server
-  hosts: servers
+  hosts: all
   become: yes
   gather_facts: yes
 
