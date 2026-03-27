@@ -1,0 +1,8 @@
+---
+- name: Setup server
+  hosts: servers
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - server_setup

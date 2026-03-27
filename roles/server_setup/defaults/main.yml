@@ -1,0 +1,14 @@
+---
+# SSH public key to add to authorized_keys
+ssh_public_key: ""
+
+# Docker users (will be added to docker group)
+docker_users:
+  - "{{ ansible_user }}"
+
+# Packages to install after update
+extra_packages:
+  - curl
+  - git
+  - htop
+  - vim

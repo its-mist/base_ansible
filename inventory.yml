@@ -1,0 +1,9 @@
+---
+all:
+  children:
+    servers:
+      hosts:
+        my-server:
+          ansible_host: 1.2.3.4        # IP сервера
+          ansible_user: ubuntu         # пользователь для подключения
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa

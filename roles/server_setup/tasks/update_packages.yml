@@ -1,0 +1,32 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
+
+- name: Upgrade all packages (Debian/Ubuntu)
+  apt:
+    upgrade: dist
+    autoremove: yes
+    autoclean: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update all packages (RedHat/CentOS)
+  dnf:
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Install extra packages (Debian/Ubuntu)
+  apt:
+    name: "{{ extra_packages }}"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install extra packages (RedHat/CentOS)
+  dnf:
+    name: "{{ extra_packages }}"
+    state: present
+  when: ansible_os_family == "RedHat"

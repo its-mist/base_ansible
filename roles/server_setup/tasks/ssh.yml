@@ -1,0 +1,60 @@
+---
+- name: Ensure .ssh directory exists for root
+  file:
+    path: /root/.ssh
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+
+- name: Add public key to root authorized_keys
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ ssh_public_key }}"
+  when: ssh_public_key | length > 0
+
+- name: Disable SSH password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+    backup: yes
+  notify: Restart sshd
+
+- name: Disable ChallengeResponseAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?ChallengeResponseAuthentication"
+    line: "ChallengeResponseAuthentication no"
+    state: present
+  notify: Restart sshd
+
+- name: Disable empty password login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PermitEmptyPasswords"
+    line: "PermitEmptyPasswords no"
+    state: present
+  notify: Restart sshd
+
+- name: Ensure PubkeyAuthentication is enabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PubkeyAuthentication"
+    line: "PubkeyAuthentication yes"
+    state: present
+  notify: Restart sshd
+
+- name: Allow root login via key only
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PermitRootLogin"
+    line: "PermitRootLogin prohibit-password"
+    state: present
+  notify: Restart sshd
+
+- name: Validate sshd config before applying
+  command: sshd -t
+  changed_when: false

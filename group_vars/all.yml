@@ -1,0 +1,8 @@
+---
+# Вставьте сюда содержимое вашего публичного ключа (~/.ssh/id_rsa.pub)
+ssh_public_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILXNsfxI/ETSMAh/2kBFAhJv6atFA1FWCMlHCerwjP9v mist@DESKTOP-MHS7F2K"
+
+# Пользователь, которому добавляется ключ и который будет в группе docker
+ssh_user: ubuntu
+docker_users:
+  - ubuntu

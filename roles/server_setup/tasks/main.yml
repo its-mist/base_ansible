@@ -1,0 +1,12 @@
+---
+- name: Update and upgrade packages
+  import_tasks: update_packages.yml
+  tags: packages
+
+- name: Install Docker
+  import_tasks: docker.yml
+  tags: docker
+
+- name: Configure SSH
+  import_tasks: ssh.yml
+  tags: ssh
