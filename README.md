@@ -19,8 +19,7 @@ cd base_ansible
 2. Установить Ansible:
 
 ```bash
-curl https://bootstrap.pypa.io/get-pip.py | python3
-pip install ansible
+apt install -y ansible
 ```
 
 3. Запустить плейбук:
