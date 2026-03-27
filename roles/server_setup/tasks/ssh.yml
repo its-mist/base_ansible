@@ -55,6 +55,12 @@
     state: present
   notify: Restart sshd
 
+- name: Ensure /run/sshd exists for config validation
+  file:
+    path: /run/sshd
+    state: directory
+    mode: "0755"
+
 - name: Validate sshd config before applying
   command: sshd -t
   changed_when: false
