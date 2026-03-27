@@ -4,7 +4,7 @@ ssh_public_key: ""
 
 # Docker users (will be added to docker group)
 docker_users:
-  - "{{ ansible_user }}"
+  - root
 
 # Packages to install after update
 extra_packages:
