@@ -19,7 +19,7 @@ cd base_ansible
 2. Установить Ansible:
 
 ```bash
-apt install -y ansible
+apt update && apt install -y ansible
 ```
 
 3. Запустить плейбук:
