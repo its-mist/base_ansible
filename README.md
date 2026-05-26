@@ -9,20 +9,15 @@ Ansible роль для первоначальной настройки серв
 
 ## Запуск
 
-1. Клонировать репозиторий на сервер:
+1. Установить git, ansible. Клонировать репозиторий на сервер:
 
 ```bash
+apt update && apt install -y git ansible
 git clone https://github.com/its-mist/base_ansible.git
 cd base_ansible
 ```
 
-2. Установить Ansible:
-
-```bash
-apt update && apt install -y ansible
-```
-
-3. Запустить плейбук:
+2. Запустить плейбук:
 
 ```bash
 ansible-playbook playbook.yml
